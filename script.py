@@ -42,6 +42,20 @@ def palindrome(s):
     elif s[:int(l/2)]==s[int(l/2)+1:][::-1]:
         return True
     return False
+   
+def prime_factorization(n):
+    l=[]
+    no=n;i=2
+    if isprime(n):
+        l.append(no)
+    else:
+        while i<=int(n/2):
+            if no%i==0:
+                l.append(i)
+                no=no//i
+            else:
+                i+=1
+    print(l)
 ###########################################
 
 #########################
@@ -88,7 +102,7 @@ def palindromic(digits=3):
     l=set()
     while a>minm:
         if palindrome(str(a*b)):
-            print(a,b)
+            #print(a,b)
             l.add(a*b)
             if b==minm:
                 a-=1
@@ -101,7 +115,15 @@ def palindromic(digits=3):
                 b=maxm
             else:
                 b-=1
-    print(max(l))            
+    print(max(l))
+    
+#########################
+########    5  #########
+########################
+def evenly_divisible(to_value):
+    fac_list=[]
+    for i in range(2,to_value+1):
+        continue
 #########################
 ########    35  #########
 ########################    

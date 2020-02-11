@@ -4,7 +4,7 @@
 
 from itertools import permutations 
 import math as m
-
+#test to check git#
 
 ###########################################
 #checks prime

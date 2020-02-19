@@ -4,6 +4,7 @@
 
 from itertools import permutations 
 import math as m
+from functools import reduce
 #test to check git#
 
 ###########################################
@@ -55,7 +56,8 @@ def prime_factorization(n):
                 no=no//i
             else:
                 i+=1
-    print(l)
+    #print(l)
+    return l
 ###########################################
 
 #########################
@@ -123,7 +125,18 @@ def palindromic(digits=3):
 def evenly_divisible(to_value):
     fac_list=[]
     for i in range(2,to_value+1):
-        continue
+        if isprime(i):
+            fac_list.append(i)
+        else:
+            factors=prime_factorization(i)
+            lis=fac_list[:]
+            for i in factors:
+                if i not in lis:
+                    fac_list.append(i)
+                else:
+                    lis.remove(i)
+        print(fac_list)
+    print(reduce((lambda x, y: x * y), fac_list))
 #########################
 ########    35  #########
 ########################    

@@ -137,6 +137,52 @@ def evenly_divisible(to_value):
                     lis.remove(i)
         print(fac_list)
     print(reduce((lambda x, y: x * y), fac_list))
+
+#########################
+########    7  #########
+########################    
+def nth_prime(n):
+    i=0;j=2;
+    while i<n:
+        if isprime(j):
+            j+=1
+            i+=1
+        else:
+            j+=1
+    print(j-1)
+    
+#########################
+########    8  #########
+########################
+def largestin_kdigits():
+    f=open('tmp.txt', 'r')
+    lines=f.readlines()
+    lines=[x[:-1] for x in lines]
+    s=''.join(lines)
+    wind=13
+    maxprod=0
+    for i in range(len(s)-wind):
+        if '0' in s[i:i+wind]:
+            continue
+        else:
+            maxprod=max(maxprod,reduce((lambda x,y:int(x)*int(y)),s[i:i+wind]))
+    print(maxprod)
+
+#########################
+########    9  #########
+########################
+def triplet():
+    a=1;b=a+1;
+    while b<1000 and a<1000:
+        if a**2+b**2==(1000-a-b)**2:
+            print(a,b)
+            break
+        else:
+            if b==999:
+                a+=1;b=a+1
+            else:
+                b+=1
+            
 #########################
 ########    35  #########
 ########################    
@@ -159,4 +205,5 @@ def circular_primes(n):
             if flg==1:
                 c+=1
                 print(no)
-    print(f'NO of circular primes under {n} : {c}')
+    print(f'No of circular primes under {n} : {c}')
+    

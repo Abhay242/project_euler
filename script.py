@@ -5,6 +5,7 @@
 from itertools import permutations 
 import math as m
 from functools import reduce
+import numpy as np
 #test to check git#
 
 ###########################################
@@ -182,7 +183,19 @@ def triplet():
                 a+=1;b=a+1
             else:
                 b+=1
-            
+
+#########################
+########    11  #########
+########################
+def prod_grid():
+    f=open('tmp.txt','r')
+    arr=np.empty((20,20))
+    lines=[x[:-1] for x in f.readlines()]
+    for l in lines:
+        l1=l.split(' ')
+        arr[lines.index(l)]=np.asarray(l1)
+    for i,j in [(x,y) for x in range(20) for  y in range(20)]:
+        if           
 #########################
 ########    35  #########
 ########################    

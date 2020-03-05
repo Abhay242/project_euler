@@ -187,15 +187,36 @@ def triplet():
 #########################
 ########    11  #########
 ########################
-def prod_grid():
+def prod_grid(n):
     f=open('tmp.txt','r')
     arr=np.empty((20,20))
     lines=[x[:-1] for x in f.readlines()]
     for l in lines:
         l1=l.split(' ')
         arr[lines.index(l)]=np.asarray(l1)
-    for i,j in [(x,y) for x in range(20) for  y in range(20)]:
-        if           
+    mx_prod=0
+    #horz
+    for i,j in [(x,y) for x in range(20) for  y in range(20-n)]:
+        mx_prod=max(arr[i,j:j+n].prod(),mx_prod)
+    #vert
+    for i,j in [(x,y) for x in range(20-n) for  y in range(20)]:
+        mx_prod=max(arr[i:i+n,j].prod(),mx_prod)
+    #flip diag    
+    flipped_arr=np.fliplr(arr)
+    for i in range(-20+n,20-n):
+        diag_arr=flipped_arr.diagonal(i)
+        for j in range((20-abs(i))-n+1):
+            diagonal_slice=diag_arr[j:j+n]            
+            mx_prod=max(diagonal_slice.prod(),mx_prod)
+    #diag
+    for i in range(-20+n,20-n):
+        diag_arr=arr.diagonal(i)
+        for j in range((20-abs(i))-n+1):
+            diagonal_slice=diag_arr[j:j+n]
+            mx_prod=max(diagonal_slice.prod(),mx_prod)
+
+    print(mx_prod)
+                           
 #########################
 ########    35  #########
 ########################    

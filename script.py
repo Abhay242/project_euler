@@ -188,7 +188,7 @@ def triplet():
 ########    11  #########
 ########################
 def prod_grid(n):
-    f=open('tmp.txt','r')
+    f=open('11.txt','r')
     arr=np.empty((20,20))
     lines=[x[:-1] for x in f.readlines()]
     for l in lines:
@@ -216,6 +216,22 @@ def prod_grid(n):
             mx_prod=max(diagonal_slice.prod(),mx_prod)
 
     print(mx_prod)
+    
+#########################
+########    12  #########
+########################    
+#no of factors = a+1 * b+1 * c+1 ... where a,b,c are powers of prime factors
+def triangle_factos(n):
+    i=0
+    while(True):
+        i+=1
+        tri_sum=(i*(i+1))//2
+        prime_facs=prime_factorization(tri_sum)
+        unq_pf=set(prime_facs)
+        powers=[prime_facs.count(i) for i in unq_pf]
+        if reduce((lambda x,y:int(x+1)*int(y+1)),powers)>n:
+            break
+    print(tri_sum)
                            
 #########################
 ########    35  #########

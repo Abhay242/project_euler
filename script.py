@@ -235,7 +235,24 @@ def triangle_factos(n):
         if reduce((lambda x,y:x*y),powers)>n:
             break
     print(tri_sum)
-                           
+                        
+#########################
+########    13  #########
+######################## 
+#solve it using big int also (to do)
+def sumoofdigits():
+    with open('12.txt','r') as file1:
+        lines=file1.readlines()
+    l=[]
+    for i in lines:
+        l.append(int(i))
+    print(reduce((lambda x,y:x+y),l))
+    
+#########################
+########    14  #########
+########################
+def collatz 
+
 #########################
 ########    35  #########
 ########################    

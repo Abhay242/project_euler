@@ -44,21 +44,24 @@ def palindrome(s):
     elif s[:int(l/2)]==s[int(l/2)+1:][::-1]:
         return True
     return False
-   
+
+    
 def prime_factorization(n):
     l=[]
     no=n;i=2
     if isprime(n):
         l.append(no)
     else:
-        while i<=int(n/2):
+        while i<=int(no/2):
             if no%i==0:
                 l.append(i)
                 no=no//i
             else:
                 i+=1
     #print(l)
-    return l
+    l.append(no)
+    return l 
+    
 ###########################################
 
 #########################
@@ -228,8 +231,8 @@ def triangle_factos(n):
         tri_sum=(i*(i+1))//2
         prime_facs=prime_factorization(tri_sum)
         unq_pf=set(prime_facs)
-        powers=[prime_facs.count(i) for i in unq_pf]
-        if reduce((lambda x,y:int(x+1)*int(y+1)),powers)>n:
+        powers=[prime_facs.count(i)+1 for i in unq_pf]
+        if reduce((lambda x,y:x*y),powers)>n:
             break
     print(tri_sum)
                            

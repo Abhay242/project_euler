@@ -44,21 +44,24 @@ def palindrome(s):
     elif s[:int(l/2)]==s[int(l/2)+1:][::-1]:
         return True
     return False
-   
+
+    
 def prime_factorization(n):
     l=[]
     no=n;i=2
     if isprime(n):
         l.append(no)
     else:
-        while i<=int(n/2):
+        while i<=int(no/2):
             if no%i==0:
                 l.append(i)
                 no=no//i
             else:
                 i+=1
     #print(l)
-    return l
+    l.append(no)
+    return l 
+    
 ###########################################
 
 #########################
@@ -187,15 +190,69 @@ def triplet():
 #########################
 ########    11  #########
 ########################
-def prod_grid():
-    f=open('tmp.txt','r')
+def prod_grid(n):
+    f=open('11.txt','r')
     arr=np.empty((20,20))
     lines=[x[:-1] for x in f.readlines()]
     for l in lines:
         l1=l.split(' ')
         arr[lines.index(l)]=np.asarray(l1)
-    for i,j in [(x,y) for x in range(20) for  y in range(20)]:
-        if           
+    mx_prod=0
+    #horz
+    for i,j in [(x,y) for x in range(20) for  y in range(20-n)]:
+        mx_prod=max(arr[i,j:j+n].prod(),mx_prod)
+    #vert
+    for i,j in [(x,y) for x in range(20-n) for  y in range(20)]:
+        mx_prod=max(arr[i:i+n,j].prod(),mx_prod)
+    #flip diag    
+    flipped_arr=np.fliplr(arr)
+    for i in range(-20+n,20-n):
+        diag_arr=flipped_arr.diagonal(i)
+        for j in range((20-abs(i))-n+1):
+            diagonal_slice=diag_arr[j:j+n]            
+            mx_prod=max(diagonal_slice.prod(),mx_prod)
+    #diag
+    for i in range(-20+n,20-n):
+        diag_arr=arr.diagonal(i)
+        for j in range((20-abs(i))-n+1):
+            diagonal_slice=diag_arr[j:j+n]
+            mx_prod=max(diagonal_slice.prod(),mx_prod)
+
+    print(mx_prod)
+    
+#########################
+########    12  #########
+########################    
+#no of factors = a+1 * b+1 * c+1 ... where a,b,c are powers of prime factors
+def triangle_factos(n):
+    i=0
+    while(True):
+        i+=1
+        tri_sum=(i*(i+1))//2
+        prime_facs=prime_factorization(tri_sum)
+        unq_pf=set(prime_facs)
+        powers=[prime_facs.count(i)+1 for i in unq_pf]
+        if reduce((lambda x,y:x*y),powers)>n:
+            break
+    print(tri_sum)
+                        
+#########################
+########    13  #########
+######################## 
+#solve it using big int also (to do)
+def sumoofdigits():
+    with open('12.txt','r') as file1:
+        lines=file1.readlines()
+    l=[]
+    for i in lines:
+        l.append(int(i))
+    print(reduce((lambda x,y:x+y),l))
+    
+#########################
+########    14  #########
+########################
+def collatz 
+
 #########################
 ########    35  #########
 ########################    

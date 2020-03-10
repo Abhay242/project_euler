@@ -251,7 +251,31 @@ def sumoofdigits():
 #########################
 ########    14  #########
 ########################
-def collatz 
+def collatz(n=1000000):
+    dct={}
+    i=2
+    while(i<n):
+        keys=dct.keys()
+        j=i
+        l=1
+        #print(dct)
+        while(j!=1):
+            #print(j)
+            if j in keys:
+               l+=dct[j]
+               dct[i]=l
+               i+=1
+               break
+            else: 
+                if j%2==0:
+                    j=j//2
+                elif j%2!=0:
+                    j=3*j+1
+                l+=1
+            if j==1:
+                dct[i]=l
+                i+=1    
+    print(max(dct,key=dct.get))    
 
 #########################
 ########    35  #########

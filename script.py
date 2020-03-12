@@ -278,6 +278,21 @@ def collatz(n=1000000):
     print(max(dct,key=dct.get))    
 
 #########################
+########    15  #########
+########################
+grid_d=np.zeros((50,50))
+def grid_paths(m=20,n=20):
+    if m==1 or n==1:
+        return 1
+    else:
+        if  grid_d[m-1][n]==0:
+            grid_d[m-1][n]=grid_paths(m-1,n)
+        if grid_d[m][n-1]==0:
+            grid_d[m][n-1]=grid_paths(m,n-1)
+        i=grid_d[m-1][n];j=grid_d[m][n-1]        
+        return i+j
+
+#########################
 ########    35  #########
 ########################    
 def circular_primes(n):

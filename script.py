@@ -253,8 +253,46 @@ def sumoofdigits():
 #########################
 ########    14  #########
 ########################
+def collatz(n=1000000):
+    dct={}
+    i=2
+    while(i<n):
+        keys=dct.keys()
+        j=i
+        l=1
+        #print(dct)
+        while(j!=1):
+            #print(j)
+            if j in keys:
+               l+=dct[j]
+               dct[i]=l
+               i+=1
+               break
+            else: 
+                if j%2==0:
+                    j=j//2
+                elif j%2!=0:
+                    j=3*j+1
+                l+=1
+            if j==1:
+                dct[i]=l
+                i+=1    
+    print(max(dct,key=dct.get))    
 
-
+#########################
+########    15  #########
+########################
+grid_d=np.zeros((50,50))
+def grid_paths(m=20,n=20):
+    if m==1 or n==1:
+        return 1
+    else:
+        if  grid_d[m-1][n]==0:
+            grid_d[m-1][n]=grid_paths(m-1,n)
+        if grid_d[m][n-1]==0:
+            grid_d[m][n-1]=grid_paths(m,n-1)
+        i=grid_d[m-1][n];j=grid_d[m][n-1]        
+        return i+j
 
 #########################
 ########    18  #########

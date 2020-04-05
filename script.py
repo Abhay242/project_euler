@@ -11,6 +11,8 @@ import numpy as np
 ###########################################
 #checks prime
 def isprime(n):
+    if n==1 or  n==0:
+        return False
     if n==2 or n==3:
         return True    
     for i in range(2,int(m.sqrt(n))+1):
@@ -293,6 +295,40 @@ def grid_paths(m=20,n=20):
         return i+j
 
 #########################
+########    18  #########
+########################
+def max_path_sum():
+    f=open('67.txt','r')
+    lines=f.readlines()
+    lines.reverse()
+    arr=np.zeros((len(lines),len(lines[0].split())))
+    val=np.array(arr)
+    for i in range(len(lines)):
+        arr[i][0:len(lines[i][0:-1].split())]=lines[i][0:-1].split()
+    lst=[]
+    for j in range(len(arr[0])):
+        lst.append(maxpathsum(0,j,arr,val))
+    print(lst)
+    print(max(lst))
+    
+def maxpathsum(i,j,arr,val):
+    #print(val)
+    if i==len(arr)-1:
+        return arr[i][0]
+    elif j==0:
+        if val[i][j]==0:
+            val[i][j]=arr[i][j]+maxpathsum(i+1,j,arr,val)
+        return val[i][j]
+    elif i+j==len(arr[0])-1:
+        if val[i][j]==0: 
+            val[i][j]=arr[i][j]+maxpathsum(i+1,j-1,arr,val)
+        return val[i][j]
+    else:
+        if val[i][j]==0:
+            val[i][j]=arr[i][j]+max(maxpathsum(i+1,j-1,arr,val),maxpathsum(i+1,j,arr,val))
+        return val[i][j]
+        
+#########################
 ########    35  #########
 ########################    
 def circular_primes(n):
@@ -315,4 +351,32 @@ def circular_primes(n):
                 c+=1
                 print(no)
     print(f'No of circular primes under {n} : {c}')
-    
+#########################
+########    51  #########
+########################
+def prime_dgt_replacement(family):
+    i=2 
+    while(True):
+        print(f'no: {i}')
+        countn=0
+        if isprime(i):
+            countn+=1
+            to_replace=set(str(i))
+            for j in to_replace:
+                miss=0
+                for k in range(10):
+                    new_no=int(str(i).replace(j,str(k)))
+                    if isprime(new_no) and len(str(new_no))==len(str(i)) and i!=new_no:
+                        print(str(i).replace(j,str(k)))
+                        countn+=1
+                    else:
+                        miss+=1
+                        if miss>10-family:
+                            countn=1
+                            print('break')
+                            break
+                    if countn==family:
+                        #print(countn)
+                        return i,j                       
+        i+=1
+        

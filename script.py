@@ -351,6 +351,7 @@ def circular_primes(n):
                 c+=1
                 print(no)
     print(f'No of circular primes under {n} : {c}')
+    
 #########################
 ########    51  #########
 ########################
@@ -379,4 +380,8 @@ def prime_dgt_replacement(family):
                         #print(countn)
                         return i,j                       
         i+=1
-        
+    
+#########################
+########    275  #########
+########################
+
